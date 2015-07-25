@@ -65,14 +65,13 @@ public class GraphView extends View {
      */
     public GraphView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initView(context, attrs);
+        this.context = context;
     }
 
     /**
      * 初始化视图
      */
-    private void initView(Context context, AttributeSet attrs) {
-        this.context = context;
+    private void initView() {
         height = getHeight();
         width = getWidth();
         hosMargin = DensityUtils.dip2px(context, HOS_MARGIN);
@@ -101,6 +100,7 @@ public class GraphView extends View {
         if (items == null) {
             return;
         }
+        initView();
         drawGraphLine(canvas);
     }
 
@@ -117,4 +117,5 @@ public class GraphView extends View {
         int verUpMargin = height - hosMargin; //在竖直方向与View上端边界的间距
         canvas.drawLine(hosMargin, verUpMargin, width - hosMargin, verUpMargin, paint);
     }
+
 }
