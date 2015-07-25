@@ -63,17 +63,16 @@ public class GraphView extends View {
     /**
      * 构造函数
      */
-    public GraphView(Context context, AttributeSet attrs, ArrayList<GraphItem> items) {
+    public GraphView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initView(context, attrs, items);
+        initView(context, attrs);
     }
 
     /**
      * 初始化视图
      */
-    private void initView(Context context, AttributeSet attrs, ArrayList<GraphItem> items) {
+    private void initView(Context context, AttributeSet attrs) {
         this.context = context;
-        this.items = items;
         height = getHeight();
         width = getWidth();
         hosMargin = DensityUtils.dip2px(context, HOS_MARGIN);
