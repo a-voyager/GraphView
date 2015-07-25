@@ -2,6 +2,8 @@ package com.voyager.graphview;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -25,6 +27,14 @@ public class GraphView extends View {
      * 竖直方向上与 View边界的间距，单位：dip
      */
     private static final int HOS_MARGIN = 8;
+    /**
+     * 坐标轴颜色
+     */
+    private static final String AXIS_LINE_COLOR = "#7fffffff";
+    /**
+     * 坐标轴宽度
+     */
+    private static final int AXIS_LINE_WIDTH = 4;
     /**
      * 上下文
      */
@@ -92,6 +102,20 @@ public class GraphView extends View {
         if (items == null) {
             return;
         }
+        drawGraphLine(canvas);
+    }
 
+    /**
+     * 绘制坐标轴
+     */
+    private void drawGraphLine(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setColor(Color.parseColor(AXIS_LINE_COLOR));
+        paint.setStrokeWidth(AXIS_LINE_WIDTH);
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawLine(hosMargin, verMargin, width - hosMargin, verMargin, paint);
+        int verUpMargin = height - hosMargin; //在竖直方向与View上端边界的间距
+        canvas.drawLine(hosMargin, verUpMargin, width - hosMargin, verUpMargin, paint);
     }
 }
