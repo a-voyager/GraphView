@@ -34,7 +34,7 @@ public class GraphView extends View {
     /**
      * 坐标轴宽度
      */
-    private static final int AXIS_LINE_WIDTH = 4;
+    private static final int AXIS_LINE_WIDTH = 2;
     /**
      * 上下文
      */
@@ -111,7 +111,7 @@ public class GraphView extends View {
         Paint paint = new Paint();
         paint.setAntiAlias(true);
         paint.setColor(Color.parseColor(AXIS_LINE_COLOR));
-        paint.setStrokeWidth(AXIS_LINE_WIDTH);
+        paint.setStrokeWidth(DensityUtils.dip2px(context, AXIS_LINE_WIDTH));
         paint.setStyle(Paint.Style.STROKE);
         canvas.drawLine(hosMargin, verMargin, width - hosMargin, verMargin, paint);
         int verUpMargin = height - hosMargin; //在竖直方向与View上端边界的间距

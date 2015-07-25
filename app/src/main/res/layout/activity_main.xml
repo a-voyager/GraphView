@@ -7,6 +7,6 @@
     <com.voyager.graphview.GraphView
         android:id="@+id/my_gv_main"
         android:layout_width="fill_parent"
-        android:layout_height="100dip" />
+        android:layout_height="180dip" />
 
 </LinearLayout>
