@@ -17,10 +17,6 @@ import java.util.ArrayList;
 public class GraphView extends View {
 
     /**
-     * 因变量显示格式，如：23.5
-     */
-    private static final String Y_VALUE_FORMAT = "0.#";
-    /**
      * 竖直方向上与 View边界的间距，单位：dip
      */
     private static final int VER_MARGIN = 25;
@@ -53,6 +49,18 @@ public class GraphView extends View {
      */
     private static final String GRAPH_LINE_COLOR = "#7fffffff";
     /**
+     * 坐标点半径
+     */
+    private static final int POINT_RADIUS = 3;
+    /**
+     * 坐标点文字颜色
+     */
+    private static final String POINT_COLOR = "#28bbff";
+    /**
+     * 坐标点文字偏移量
+     */
+    private static final int POINT_TEXT_OFFSET = 10;
+    /**
      * 上下文
      */
     private Context context;
@@ -76,8 +84,18 @@ public class GraphView extends View {
      * 竖直间距，单位：px
      */
     private int verMargin;
+    /**
+     * 画笔
+     */
     private Paint paint;
+    /**
+     * 自变量坐标集合
+     */
     private ArrayList<Integer> xPoints;
+    /**
+     * 坐标点集合
+     */
+    private Point[] points;
 
     /**
      * 构造函数
@@ -125,6 +143,21 @@ public class GraphView extends View {
         drawGraphAxis(canvas);
         drawXValue(canvas);
         drawYValue(canvas);
+        drawPoint(canvas);
+    }
+
+    /**
+     * 绘制坐标点
+     */
+    private void drawPoint(Canvas canvas) {
+        paint.setStyle(Paint.Style.FILL);
+        int yOffset = DensityUtils.dip2px(context, POINT_TEXT_OFFSET);
+        for (int i = 0; i < points.length; i++) {
+            paint.setColor(Color.parseColor(POINT_COLOR));
+            canvas.drawCircle(points[i].x, points[i].y, POINT_RADIUS, paint);
+            paint.setColor(Color.WHITE);
+            canvas.drawText(String.valueOf(items.get(i).getyValue()), points[i].x, points[i].y - yOffset, paint);
+        }
     }
 
     /**
@@ -141,7 +174,7 @@ public class GraphView extends View {
         float range = (max - min) > 0 ? (max - min) : COPYS;     //极差
         max = max + range / COPYS;
         min = min - range / COPYS;
-        Point[] points = getAllPoints(xPoints, max, min, height - 2 * verMargin - hosMargin, verMargin);
+        points = getAllPoints(xPoints, max, min, height - 2 * verMargin - hosMargin, verMargin);
         paint.setStrokeWidth(GRAPH_LINE_WIDTH);
         paint.setColor(Color.parseColor(GRAPH_LINE_COLOR));
         paint.setStyle(Paint.Style.STROKE);

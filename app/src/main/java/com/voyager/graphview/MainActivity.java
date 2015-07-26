@@ -46,7 +46,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             return;
         }
         String[] points = data.split(";");
-        items.add(new GraphItem(points[0], Integer.parseInt(points[1])));
+        items.add(new GraphItem(points[0], Float.parseFloat(points[1])));
         my_gv_main.invalidate();
     }
 }
