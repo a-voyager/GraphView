@@ -60,6 +60,7 @@ public class GraphView extends View {
      * 竖直间距，单位：px
      */
     private int verMargin;
+    private Paint paint;
 
     /**
      * 构造函数
@@ -77,6 +78,8 @@ public class GraphView extends View {
         width = getWidth();
         hosMargin = DensityUtils.dip2px(context, HOS_MARGIN);
         verMargin = DensityUtils.dip2px(context, VER_MARGIN);
+        paint = new Paint();
+        paint.setAntiAlias(true);
     }
 
     /**
@@ -110,8 +113,8 @@ public class GraphView extends View {
      * 绘制 x轴自变量
      */
     private void drawXValue(Canvas canvas) {
-        Paint paint = new Paint();
         paint.setColor(Color.GRAY);
+        paint.setStrokeWidth(0);
         paint.setTextSize(DensityUtils.dip2px(context, X_VALUE_TEXTSIZE));
         int period = (width - 2 * hosMargin) / items.size(); //平均间隔
         int startX = hosMargin * 3;
@@ -125,8 +128,6 @@ public class GraphView extends View {
      * 绘制坐标轴
      */
     private void drawGraphLine(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setAntiAlias(true);
         paint.setColor(Color.parseColor(AXIS_LINE_COLOR));
         paint.setStrokeWidth(DensityUtils.dip2px(context, AXIS_LINE_WIDTH));
         paint.setStyle(Paint.Style.STROKE);
