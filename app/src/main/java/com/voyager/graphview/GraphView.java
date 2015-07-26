@@ -35,6 +35,7 @@ public class GraphView extends View {
      * 坐标轴宽度
      */
     private static final int AXIS_LINE_WIDTH = 2;
+    private static final int X_VALUE_TEXTSIZE = 12;
     /**
      * 上下文
      */
@@ -102,6 +103,22 @@ public class GraphView extends View {
         }
         initView();
         drawGraphLine(canvas);
+        drawXValue(canvas);
+    }
+
+    /**
+     * 绘制 x轴自变量
+     */
+    private void drawXValue(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(Color.GRAY);
+        paint.setTextSize(DensityUtils.dip2px(context, X_VALUE_TEXTSIZE));
+        int perid = (width - 2 * hosMargin) / items.size(); //平均间隔
+        for (int i = 0; i < items.size(); i++) {
+            int startX = hosMargin*3 + perid * i;
+            canvas.drawText(items.get(i).getxValue(), startX, verMargin/2, paint);
+        }
+
     }
 
     /**
