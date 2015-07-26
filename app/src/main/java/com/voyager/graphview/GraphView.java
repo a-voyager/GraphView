@@ -113,12 +113,12 @@ public class GraphView extends View {
         Paint paint = new Paint();
         paint.setColor(Color.GRAY);
         paint.setTextSize(DensityUtils.dip2px(context, X_VALUE_TEXTSIZE));
-        int perid = (width - 2 * hosMargin) / items.size(); //平均间隔
-        for (int i = 0; i < items.size(); i++) {
-            int startX = hosMargin*3 + perid * i;
-            canvas.drawText(items.get(i).getxValue(), startX, verMargin/2, paint);
+        int period = (width - 2 * hosMargin) / items.size(); //平均间隔
+        int startX = hosMargin * 3;
+        for (GraphItem item : items) {
+            canvas.drawText(item.getxValue(), startX, verMargin / 2, paint);
+            startX += period;
         }
-
     }
 
     /**
