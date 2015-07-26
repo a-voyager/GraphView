@@ -44,7 +44,13 @@ public class GraphView extends View {
      * 因变量极差均分的份数
      */
     private static final float COPYS = 6.0f;
+    /**
+     * 线条宽度
+     */
     private static final int GRAPH_LINE_WIDTH = 3;
+    /**
+     * 线条颜色
+     */
     private static final String GRAPH_LINE_COLOR = "#7fffffff";
     /**
      * 上下文
