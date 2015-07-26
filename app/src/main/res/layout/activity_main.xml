@@ -9,4 +9,30 @@
         android:layout_height="250dip"
         android:layout_centerInParent="true" />
 
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_data"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="今天;23"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="添加" />
+
+
+    </LinearLayout>
+
+
 </RelativeLayout>
